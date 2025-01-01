@@ -27,7 +27,7 @@
             font-weight: bold;
             color: #333;
         }
-        textarea, select {
+        textarea {
             width: calc(100% - 24px);
             padding: 12px;
             font-size: 14px;
@@ -36,7 +36,7 @@
             background: #f8f9fa;
             transition: border-color 0.3s;
         }
-        textarea:focus, select:focus {
+        textarea:focus {
             border-color: #007BFF;
             outline: none;
             background: #ffffff;
@@ -79,15 +79,6 @@
             <label for="keywords">Keywords (one per line):</label>
             <textarea id="keywords" rows="5" placeholder="Enter keywords here..."></textarea>
         </div>
-        <div class="form-group">
-            <label for="domain">Blogger Domain:</label>
-            <select id="domain">
-                <option value="https://hairstylemagazineonline.blogspot.com/">hairstylemagazineonline.blogspot.com</option>
-                <option value="https://tophairstyleeveryday.blogspot.com/">tophairstyleeveryday.blogspot.com</option>
-                <option value="https://tophairstyleus.blogspot.com/">tophairstyleus.blogspot.com</option>
-                <option value="https://hairstylepint.blogspot.com/">hairstylepint.blogspot.com</option>
-            </select>
-        </div>
         <div class="button-group">
             <button onclick="generateLinks()">Generate Links</button>
         </div>
@@ -100,8 +91,6 @@
     <script>
         function generateLinks() {
             const keywords = document.getElementById('keywords').value.trim().split('\n');
-            const domain = document.getElementById('domain').value;
-            const output = document.getElementById('output');
 
             const domains = [
                 "https://hairstylemagazineonline.blogspot.com/",
@@ -109,6 +98,8 @@
                 "https://tophairstyleus.blogspot.com/",
                 "https://hairstylepint.blogspot.com/"
             ];
+
+            const output = document.getElementById('output');
 
             const formattedLinks = keywords
                 .filter(keyword => keyword.trim() !== '')
