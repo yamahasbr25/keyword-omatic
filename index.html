@@ -77,8 +77,11 @@
             border: 1px solid #ddd;
             border-radius: 8px;
         }
-        .button-group.output-spacing {
-            margin-top: 20px;
+        .button-group {
+            margin-bottom: 30px; /* Add spacing below Generate Links button */
+        }
+        .output-group {
+            margin-bottom: 20px; /* Add spacing below Output section */
         }
     </style>
 </head>
@@ -101,7 +104,7 @@
         <div class="button-group">
             <button onclick="generateLinks()">Generate Links</button>
         </div>
-        <div class="button-group output-spacing">
+        <div class="form-group output-group">
             <label>Output:</label>
             <div id="output" class="output"></div>
         </div>
