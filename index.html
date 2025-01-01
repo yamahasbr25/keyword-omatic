@@ -102,6 +102,9 @@
             <label>Output:</label>
             <div id="output" class="output"></div>
         </div>
+        <div class="button-group">
+            <button onclick="copyOutput()">Copy Output</button>
+        </div>
     </div>
 
     <script>
@@ -125,6 +128,15 @@
                 });
 
             output.textContent = formattedLinks.length ? formattedLinks.join('\n') : 'No keywords provided.';
+        }
+
+        function copyOutput() {
+            const output = document.getElementById('output').textContent;
+            navigator.clipboard.writeText(output).then(() => {
+                alert('Output copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
         }
     </script>
 </body>
