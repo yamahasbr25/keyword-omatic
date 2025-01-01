@@ -70,6 +70,13 @@
             color: #333;
             margin-bottom: 20px;
         }
+        .domain-list {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -78,6 +85,15 @@
         <div class="form-group">
             <label for="keywords">Keywords (one per line):</label>
             <textarea id="keywords" rows="5" placeholder="Enter keywords here..."></textarea>
+        </div>
+        <div class="form-group domain-list">
+            <label>Available Blogger Domains:</label>
+            <ul>
+                <li>https://hairstylemagazineonline.blogspot.com/</li>
+                <li>https://tophairstyleeveryday.blogspot.com/</li>
+                <li>https://tophairstyleus.blogspot.com/</li>
+                <li>https://hairstylepint.blogspot.com/</li>
+            </ul>
         </div>
         <div class="button-group">
             <button onclick="generateLinks()">Generate Links</button>
@@ -91,6 +107,7 @@
     <script>
         function generateLinks() {
             const keywords = document.getElementById('keywords').value.trim().split('\n');
+            const output = document.getElementById('output');
 
             const domains = [
                 "https://hairstylemagazineonline.blogspot.com/",
@@ -98,8 +115,6 @@
                 "https://tophairstyleus.blogspot.com/",
                 "https://hairstylepint.blogspot.com/"
             ];
-
-            const output = document.getElementById('output');
 
             const formattedLinks = keywords
                 .filter(keyword => keyword.trim() !== '')
