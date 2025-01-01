@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyword to Blogger Search Link</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        textarea, select {
+            width: calc(100% - 24px);
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            background: #f8f9fa;
+            transition: border-color 0.3s;
+        }
+        textarea:focus, select:focus {
+            border-color: #007BFF;
+            outline: none;
+            background: #ffffff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            background: #f8f9fa;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Keyword to Blogger Search Link</h1>
+        <div class="form-group">
+            <label for="keywords">Keywords (one per line):</label>
+            <textarea id="keywords" rows="5" placeholder="Enter keywords here..."></textarea>
+        </div>
+        <div class="form-group">
+            <label for="domain">Blogger Domain:</label>
+            <select id="domain">
+                <option value="https://hairstylemagazineonline.blogspot.com/">hairstylemagazineonline.blogspot.com</option>
+                <option value="https://tophairstyleeveryday.blogspot.com/">tophairstyleeveryday.blogspot.com</option>
+                <option value="https://tophairstyleus.blogspot.com/">tophairstyleus.blogspot.com</option>
+                <option value="https://hairstylepint.blogspot.com/">hairstylepint.blogspot.com</option>
+            </select>
+        </div>
+        <div class="button-group">
+            <button onclick="generateLinks()">Generate Links</button>
+        </div>
+        <div class="form-group">
+            <label>Output:</label>
+            <div id="output" class="output"></div>
+        </div>
+    </div>
+
+    <script>
+        function generateLinks() {
+            const keywords = document.getElementById('keywords').value.trim().split('\n');
+            const domain = document.getElementById('domain').value;
+            const output = document.getElementById('output');
+
+            const links = keywords
+                .filter(keyword => keyword.trim() !== '')
+                .map(keyword => {
+                    const encodedKeyword = keyword.trim().replace(/ /g, '%20');
+                    return `${domain}search?q=${encodedKeyword}`;
+                });
+
+            output.textContent = links.length ? links.join('\n') : 'No keywords provided.';
+        }
+    </script>
+</body>
+</html>
