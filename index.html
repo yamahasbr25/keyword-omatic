@@ -103,14 +103,22 @@
             const domain = document.getElementById('domain').value;
             const output = document.getElementById('output');
 
-            const links = keywords
+            const domains = [
+                "https://hairstylemagazineonline.blogspot.com/",
+                "https://tophairstyleeveryday.blogspot.com/",
+                "https://tophairstyleus.blogspot.com/",
+                "https://hairstylepint.blogspot.com/"
+            ];
+
+            const formattedLinks = keywords
                 .filter(keyword => keyword.trim() !== '')
                 .map(keyword => {
                     const encodedKeyword = keyword.trim().replace(/ /g, '%20');
-                    return `${domain}search?q=${encodedKeyword}`;
+                    const domainLinks = domains.map(domain => `${domain}search?q=${encodedKeyword}`).join('|');
+                    return `{${domainLinks}}`;
                 });
 
-            output.textContent = links.length ? links.join('\n') : 'No keywords provided.';
+            output.textContent = formattedLinks.length ? formattedLinks.join('\n') : 'No keywords provided.';
         }
     </script>
 </body>
