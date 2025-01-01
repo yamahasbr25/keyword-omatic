@@ -94,11 +94,8 @@
         </div>
         <div class="form-group domain-list">
             <label>Available Blogger Domains:</label>
-            <ul>
-                <li>https://hairstylemagazineonline.blogspot.com/</li>
-                <li>https://tophairstyleeveryday.blogspot.com/</li>
-                <li>https://tophairstyleus.blogspot.com/</li>
-                <li>https://hairstylepint.blogspot.com/</li>
+            <ul id="domain-list">
+                <li>Loading domains...</li>
             </ul>
         </div>
         <div class="button-group">
@@ -114,16 +111,29 @@
     </div>
 
     <script>
+        let domains = [];
+
+        // Fetch domains from domain.txt
+        fetch('domain.txt')
+            .then(response => response.text())
+            .then(text => {
+                domains = text.trim().split('\n');
+                const domainList = document.getElementById('domain-list');
+                domainList.innerHTML = '';
+                domains.forEach(domain => {
+                    const li = document.createElement('li');
+                    li.textContent = domain;
+                    domainList.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching domains:', error);
+                document.getElementById('domain-list').innerHTML = '<li>Error loading domains</li>';
+            });
+
         function generateLinks() {
             const keywords = document.getElementById('keywords').value.trim().split('\n');
             const output = document.getElementById('output');
-
-            const domains = [
-                "https://hairstylemagazineonline.blogspot.com/",
-                "https://tophairstyleeveryday.blogspot.com/",
-                "https://tophairstyleus.blogspot.com/",
-                "https://hairstylepint.blogspot.com/"
-            ];
 
             const formattedLinks = keywords
                 .filter(keyword => keyword.trim() !== '')
